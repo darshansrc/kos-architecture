@@ -220,7 +220,7 @@ const SECTION_CONTENT = {
       <div>
         Syncs decisions into real systems: ERP, OMS, WMS, marketplaces, ad
         platforms, CRM—so execution happens where operations live.
-        <div>
+        <div className="mt-2 rounded-xl overflow-hidden border ">
           <img src="/demo/erp.png" alt="ERP & Integrations" />
         </div>
       </div>
@@ -422,12 +422,9 @@ export default function PipelinePage() {
               <DrawerTitle className="text-2xl font-bold text-[#1C2D48]">
                 {currentContent?.title}
               </DrawerTitle>
-              <DrawerDescription>
-                Learn more about this component of the Komerz architecture
-              </DrawerDescription>
             </DrawerHeader>
             <div className="p-4 pb-0">
-              <div className="mt-3 h-[300px] overflow-y-auto">
+              <div className="mt-3 min-h-75 overflow-y-auto">
                 {currentContent?.content}
               </div>
             </div>
