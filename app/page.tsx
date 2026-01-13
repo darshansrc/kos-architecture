@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { ChartArea, SearchCheck, TextSearch } from "lucide-react";
 import Lottie from "lottie-react";
 import loopAnimation from "@/public/images/loop.json";
-import Image from "next/image";
 import {
   Drawer,
   DrawerContent,
@@ -223,11 +222,11 @@ export default function PipelinePage() {
   };
 
   return (
-    <div className="bg-white h-screen min-h-screen max-h-screen relative">
+    <div className="bg-white h-screen min-h-screen max-h-screen relative flex flex-col">
       <Header />
 
       <div className="wrap">
-        <div className="stage pt-16" onClick={handleBackgroundClick}>
+        <div className="stage" onClick={handleBackgroundClick}>
           <Drawer
             open={!!activeNode && !!panelContent}
             onOpenChange={(open) => !open && setActiveNode("")}
@@ -1234,9 +1233,9 @@ export default function PipelinePage() {
 
         .wrap {
           flex: 1;
-          display: grid;
-          grid-template-columns: 1fr;
-          place-items: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           padding: 18px;
           box-sizing: border-box;
           overflow: hidden;
@@ -1247,6 +1246,9 @@ export default function PipelinePage() {
           height: min(640px, 92vh);
           position: relative;
           border-radius: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .stage::before {
