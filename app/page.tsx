@@ -79,9 +79,9 @@ export default function PipelinePage() {
             {/* Column 3: Proprietary Data */}
             <div className="flex items-center justify-center relative">
               <div className="relative scale-75 w-48 h-64 flex flex-col items-center z-10 bg-white">
-                <div className="absolute top-0 w-full h-16 bg-white border-2 border-gray-300 rounded-[50%] z-20"></div>
+                <div className="absolute top-0 w-full h-16 bg-white border-2  border-[#E4DECD] rounded-[50%] z-20"></div>
                 <div
-                  className="absolute top-8 w-full h-56 bg-[#1e293b] border-x-2 border-b-2 border-gray-300 flex items-center justify-center z-10"
+                  className="absolute top-8 w-full h-56 bg-[#1C2D48] border-x-2 border-b-2  border-[#E4DECD] flex items-center justify-center z-10"
                   style={{ borderRadius: "0 0 50% 50% / 0 0 25% 25%" }}
                 >
                   <p className="text-white text-center font-bold text-lg mt-4 tracking-tight">
@@ -96,52 +96,62 @@ export default function PipelinePage() {
             {/* Column 4: Circle Chart */}
             <div className="flex items-center justify-center relative">
               <div className="relative w-80 h-80 z-10">
-                <div className="absolute top-0 left-0 w-1/2 h-1/2 p-1">
-                  <div className="w-full h-full bg-[#1E293B] rounded-tl-full flex items-center justify-center text-white font-semibold">
-                    <p className="text-sm ">Where to Play</p>
+                <div className="absolute top-0 left-0 w-1/2 h-1/2 p-0.5">
+                  <div className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tl-full flex items-center justify-center text-white font-semibold">
+                    <p className="text-xs text-center pt-6 pl-2 text-[#1C2D48]">
+                      Where to Play
+                    </p>
                   </div>
                 </div>
-                <div className="absolute top-0 right-0 w-1/2 h-1/2 p-1">
-                  <div className="w-full h-full bg-[#B5CAD5] rounded-tr-full flex items-center justify-center text-white font-semibold">
-                    <p className="text-sm ">How to Manage</p>
+                <div className="absolute top-0 right-0 w-1/2 h-1/2 p-0.5">
+                  <div className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tr-full flex items-center justify-center text-white font-semibold">
+                    <p className="text-xs text-center pt-6 pr-2 text-[#1C2D48]">
+                      How to Manage
+                    </p>
                   </div>
                 </div>
-                <div className="absolute bottom-0 left-0 w-1/2 h-1/2 p-1">
-                  <div className="w-full h-full  bg-[#B5CAD5] rounded-bl-full flex items-center justify-center text-white font-semibold">
-                    <p className="text-sm ">How to Execute</p>
+                <div className="absolute bottom-0 left-0 w-1/2 h-1/2 p-0.5">
+                  <div className="w-full h-full   bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-bl-full flex items-center justify-center text-white font-semibold">
+                    <p className="text-xs text-center pb-6 pl-2 text-[#1C2D48]">
+                      How to Execute
+                    </p>
                   </div>
                 </div>
-                <div className="absolute bottom-0 right-0 w-1/2 h-1/2 p-1">
-                  <div className="w-full h-full bg-[#1E293B]  rounded-br-full flex items-center justify-center text-white font-semibold">
-                    <p className="text-sm ">How to Win</p>
+                <div className="absolute bottom-0 right-0 w-1/2 h-1/2 p-0.5 ">
+                  <div className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD]  rounded-br-full flex items-center justify-center text-white font-semibold">
+                    <p className="text-xs text-center pb-6 pr-2 text-[#1C2D48]">
+                      How to Win
+                    </p>
                   </div>
                 </div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center">
-                  <div className="text-gray-800 font-bold text-sm text-center">
+                <div className="absolute bg-[#1C2D48] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20  rounded-full shadow-lg flex items-center justify-center">
+                  <div className="text-white  font-bold text-sm text-center border border-[#1C2D48]">
                     <Brain />
                   </div>
                 </div>
               </div>
 
               {/* Diverging Arrows to the 3 end-blocks */}
-              <DashedArrow className="w-20 -right-12 top-[20%] -translate-y-1/2" />
+              <DashedArrow className="w-28 -right-12 top-[10%] -translate-y-1/2" />
               <DashedArrow className="w-12 -right-12 top-1/2 -translate-y-1/2" />
-              <DashedArrow className="w-20 -right-12 top-[80%] -translate-y-1/2" />
+              <DashedArrow className="w-28 -right-12 top-[90%] -translate-y-1/2" />
             </div>
 
             {/* Column 5: End Points */}
             <div className="flex flex-col items-center gap-8 justify-center relative">
-              <div className="h-16 w-64 border rounded flex items-center justify-center bg-white z-10">
-                <IconCpu2 />
-                <p>Komerz Agents</p>
+              <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white  z-10">
+                <IconCpu2 className="size-8" />
+                <p className="text-sm font-medium">Komerz Agents</p>
               </div>
-              <div className="h-16 w-64 border rounded flex items-center justify-center bg-white z-10">
-                <IconChartAreaLine />
-                <p>Business application and Impact</p>
+              <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10">
+                <IconChartAreaLine className="size-8" />
+                <p className="text-sm font-medium">
+                  Business application and Impact
+                </p>
               </div>
-              <div className="h-16 w-64 border rounded flex items-center justify-center bg-white z-10">
-                <IconBolt />
-                <p>ERP and Integrations</p>
+              <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10">
+                <IconBolt className="size-8" />
+                <p className="text-sm font-medium">ERP and Integrations</p>
               </div>
             </div>
           </div>
