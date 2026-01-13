@@ -5,7 +5,10 @@ export default function Header() {
     <header className=" fixed top-0 w-screen p-4 ">
       <div className="max-w-7xl mx-auto flex items-center justify-between w-full flex-row gap-2 ">
         <div>
-          <h1 className="text-2xl  font-semibold text-black font-mono">
+          <h1
+            className="text-2xl  font-semibold text-black"
+            style={{ fontFamily: "'Quantico', sans-serif", fontWeight: 700 }}
+          >
             Komerz OS
           </h1>
           <p className="text-xs text-muted-foreground ">
@@ -24,7 +27,7 @@ export default function Header() {
       </div>
       <style>
         @import
-        url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+        url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
       </style>
     </header>
   );
