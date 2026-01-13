@@ -21,7 +21,7 @@ export function InfraBedrock() {
     <div>
       {/* --- BOTTOM: TECH STACK DRAWER --- */}
       <div
-        className={`z-30 bg-[#1D2D48] border-t-2 border-[#EBE6DA] transition-all duration-300 ease-in-out w-full ${isStackOpen ? "h-125" : "h-12 hover:h-14"}`}
+        className={`z-30 bg-[#1D2D48]  border-[#EBE6DA] transition-all fixed bottom-0 duration-300 ease-in-out w-full ${isStackOpen ? "h-125" : "h-12 hover:h-14"}`}
       >
         {/* Toggle Handle */}
         <div
