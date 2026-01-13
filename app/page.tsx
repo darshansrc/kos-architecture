@@ -44,7 +44,7 @@ export default function PipelinePage() {
             {/* Column 1: Sources */}
             <div className="flex flex-col gap-12 relative">
               <div className="relative">
-                <div className="p-2 border rounded-lg font-semibold text-sm w-44 text-center bg-white z-10 relative">
+                <div className="p-2 border rounded-lg font-semibold text-sm w-44 text-center bg-[#EBE7DD] z-10 relative">
                   Internal Data Sources
                 </div>
                 {/* Arrow to Processing */}
@@ -52,7 +52,7 @@ export default function PipelinePage() {
               </div>
 
               <div className="relative">
-                <div className="p-2 border rounded-lg font-semibold text-sm w-44 text-center bg-white z-10 relative">
+                <div className="p-2 border rounded-lg font-semibold text-sm w-44 text-center bg-[#EBE7DD] z-10 relative">
                   External Data Sources
                 </div>
                 {/* Arrow to Processing */}
@@ -140,17 +140,17 @@ export default function PipelinePage() {
             {/* Column 5: End Points */}
             <div className="flex flex-col items-center gap-8 justify-center relative">
               <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white  z-10">
-                <IconCpu2 className="size-8" />
-                <p className="text-sm font-medium">Komerz Agents</p>
+                <IconCpu2 className="size-6 text-[#1C2D48]" />
+                <p className="text-sm font-medium ">Komerz Agents</p>
               </div>
               <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10">
-                <IconChartAreaLine className="size-8" />
+                <IconChartAreaLine className="size-6 text-[#1C2D48]" />
                 <p className="text-sm font-medium">
                   Business application and Impact
                 </p>
               </div>
               <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10">
-                <IconBolt className="size-8" />
+                <IconBolt className="size-6 text-[#1C2D48]" />
                 <p className="text-sm font-medium">ERP and Integrations</p>
               </div>
             </div>
