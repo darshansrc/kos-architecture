@@ -14,6 +14,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { InfraBedrock } from "./_components/infra-bedrock";
+import Header from "./_components/header";
 
 interface NodeContent {
   title: string;
@@ -197,26 +198,6 @@ const content: Record<string, NodeContent> = {
   },
 };
 
-const flows: Record<string, string[]> = {
-  internal: ["f_internal_to_proc"],
-  external: ["f_external_to_proc"],
-  processing: ["f_internal_to_proc", "f_external_to_proc", "f_proc_to_db"],
-  data: ["f_proc_to_db", "f_db_to_brain"],
-  agents: ["f_agents_to_brain"],
-  brain: [
-    "f_db_to_brain",
-    "f_agents_to_brain",
-    "f_brain_to_impact",
-    "f_brain_to_erp",
-  ],
-  q1: ["f_db_to_brain", "f_brain_to_impact"],
-  q2: ["f_db_to_brain", "f_brain_to_impact"],
-  q3: ["f_db_to_brain", "f_brain_to_impact"],
-  q4: ["f_db_to_brain", "f_brain_to_erp", "f_brain_to_impact"],
-  impact: ["f_brain_to_impact"],
-  erp: ["f_brain_to_erp"],
-};
-
 export default function PipelinePage() {
   const [activeNode, setActiveNode] = useState<string | null>(null);
 
@@ -243,28 +224,10 @@ export default function PipelinePage() {
 
   return (
     <div className="bg-white h-screen min-h-screen max-h-screen relative">
-      <header className="bg-primary p-2">
-        <div className="header-left">
-          <div className="logo-icon">
-            <Image
-              src="/icon.svg"
-              alt="Komerz OS Logo"
-              width={20}
-              height={20}
-            />
-          </div>
-          <div className="logo-text">
-            <h1>Komerz OS</h1>
-            <p>
-              One of a kind end-to-end operating system to launch and manage
-              brand in market across all channels using Al & ML
-            </p>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <div className="wrap">
-        <div className="stage" onClick={handleBackgroundClick}>
+        <div className="stage pt-16" onClick={handleBackgroundClick}>
           <Drawer
             open={!!activeNode && !!panelContent}
             onOpenChange={(open) => !open && setActiveNode("")}
@@ -292,8 +255,6 @@ export default function PipelinePage() {
               </DrawerContent>
             )}
           </Drawer>
-
-          <div className="hint">Tip: click nodes to trace the pipeline</div>
 
           {/* SVG Diagram */}
           <svg

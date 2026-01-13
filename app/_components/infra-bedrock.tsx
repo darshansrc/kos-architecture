@@ -21,7 +21,7 @@ export function InfraBedrock() {
     <div>
       {/* --- BOTTOM: TECH STACK DRAWER --- */}
       <div
-        className={`z-30 bg-[#1D2D48] border-t-2 border-[#EBE6DA] transition-all duration-300 ease-in-out fixed bottom-0 w-full ${isStackOpen ? "h-[500px]" : "h-12 hover:h-14"}`}
+        className={`z-30 bg-[#1D2D48] border-t-2 border-[#EBE6DA] transition-all duration-300 ease-in-out fixed bottom-0 w-full ${isStackOpen ? "h-125" : "h-12 hover:h-14"}`}
       >
         {/* Toggle Handle */}
         <div
@@ -43,7 +43,7 @@ export function InfraBedrock() {
 
         {/* Expanded Content */}
         {isStackOpen && (
-          <div className="grid grid-cols-5 gap-4 p-6 animate-in fade-in duration-300">
+          <div className="grid grid-cols-5 gap-4 p-6 animate-in fade-in duration-300 max-w-7xl mx-auto">
             <StackSection
               title="Tech Stack & App Framework"
               items={[
