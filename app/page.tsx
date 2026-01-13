@@ -300,9 +300,9 @@ export default function PipelinePage() {
                 onClick={() => handleSectionClick("proprietary-data")}
                 className="relative scale-75 w-48 h-64 flex flex-col items-center z-10 bg-white transition-all duration-300 hover:scale-[0.78] cursor-pointer group"
               >
-                <div className="absolute top-0 w-full h-16 bg-white border-2  border-[#E4DECD] rounded-[50%] z-20 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#D4CAB3]"></div>
+                <div className="absolute top-0 w-full h-16 bg-white border-2  border-[#E4DECD] rounded-[50%] z-20 transition-all duration-300 group-hover:shadow-lg  "></div>
                 <div
-                  className="absolute top-8 w-full h-56 bg-[#1C2D48] border-x-2 border-b-2  border-[#E4DECD] flex items-center justify-center z-10 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-[#1C2D48]/50"
+                  className="absolute top-8 w-full h-56 bg-[#1C2D48] border-x-2 border-b-2  border-[#E4DECD] flex items-center justify-center z-10 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-[#D4CAB3]"
                   style={{ borderRadius: "0 0 50% 50% / 0 0 25% 25%" }}
                 >
                   <p className="text-white text-center font-bold text-lg mt-4 tracking-tight">
@@ -377,7 +377,7 @@ export default function PipelinePage() {
             <div className="flex flex-col items-center gap-8 justify-center relative">
               <div
                 onClick={() => handleSectionClick("komerz-agents")}
-                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white  z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C2D48]/30 hover:scale-105 cursor-pointer"
+                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white  z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3]/30 hover:scale-105 cursor-pointer"
               >
                 <img
                   src="/demo/brain.svg"
@@ -387,7 +387,7 @@ export default function PipelinePage() {
               </div>
               <div
                 onClick={() => handleSectionClick("business-impact")}
-                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C2D48]/30 hover:scale-105 cursor-pointer"
+                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3]/30 hover:scale-105 cursor-pointer"
               >
                 <img
                   src="/demo/chart.png"
@@ -399,7 +399,7 @@ export default function PipelinePage() {
               </div>
               <div
                 onClick={() => handleSectionClick("erp-integrations")}
-                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C2D48]/30 hover:scale-105 cursor-pointer"
+                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3]/30 hover:scale-105 cursor-pointer"
               >
                 <img
                   src="/demo/integration.png"
