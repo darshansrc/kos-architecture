@@ -1,6 +1,13 @@
 "use client";
 
-import { Brain } from "lucide-react";
+import {
+  BotMessageSquare,
+  Brain,
+  BrainCircuit,
+  ChartArea,
+  SearchCheck,
+  TextSearch,
+} from "lucide-react";
 import { InfraBedrock } from "./_components/infra-bedrock";
 import Header from "./_components/header";
 import {
@@ -8,7 +15,20 @@ import {
   IconBolt,
   IconChartAreaLine,
   IconCpu2,
+  IconDatabaseSearch,
+  IconWorldSearch,
 } from "@tabler/icons-react";
+import { useState } from "react";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 
 const DashedArrow = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center absolute z-0 ${className}`}>
@@ -33,7 +53,194 @@ const DashedArrow = ({ className = "" }: { className?: string }) => (
   </div>
 );
 
+// Content map for all sections
+const SECTION_CONTENT = {
+  "internal-data-sources": {
+    id: "internal-data-sources",
+    title: "Internal Data Sources",
+    content: (
+      <div className="grid grid-cols-2 justify-center gap-2">
+        <div className="border bg-white rounded-lg p-1 flex items-center justify-center">
+          <img src="/demo/exa.jpg" className="max-w-32 object-contain" />
+        </div>
+        <div className="border bg-white rounded-lg p-1 flex items-center justify-center">
+          <img src="/demo/google.png" className="max-w-32 object-contain " />
+        </div>
+      </div>
+    ),
+  },
+  "external-data-sources": {
+    id: "external-data-sources",
+    title: "External Data Sources",
+    content: (
+      <div className="grid grid-cols-2 justify-center gap-2">
+        <div className="border  bg-white rounded-lg p-1 flex items-center justify-center">
+          <img src="/demo/em.png" className="max-w-32 object-contain" />
+        </div>
+        <div className="border  bg-white rounded-lg p-1 flex items-center justify-center">
+          <img src="/demo/js.png" className="max-w-32 object-contain" />
+        </div>
+        <div className="border  bg-white rounded-lg p-1 flex items-center justify-center">
+          <img src="/demo/globaldata.png" className="max-w-32 object-contain" />
+        </div>
+        <div className="border   bg-white rounded-lg p-1 flex items-center justify-center">
+          <img src="/demo/NielsenIQ.webp" className="max-w-32 object-contain" />
+        </div>
+      </div>
+    ),
+  },
+  "intelligent-processing": {
+    id: "intelligent-processing",
+    title: "Intelligent Data Processing",
+    content: (
+      <>
+        Cleaning, normalization, entity resolution, feature creation, and
+        policy/rules that turn raw inputs into decision-ready signals.
+      </>
+    ),
+  },
+  "proprietary-data": {
+    id: "proprietary-data",
+    title: "Komerz Proprietary Data",
+    content: (
+      <>
+        A structured knowledge base that captures what KomerzOS learns over
+        time—patterns, playbooks, outcomes, and what works for your business.
+      </>
+    ),
+  },
+  "where-to-play": {
+    id: "where-to-play",
+    title: "Where to Play",
+    content: (
+      <ul>
+        <li> • Commercial Consulting</li>
+        <li> • Data & Analytics</li>
+        <li> • Assortment Planning</li>
+        <li> • Channel Understanding</li>
+      </ul>
+    ),
+  },
+  "how-to-manage": {
+    id: "how-to-manage",
+    title: "How to Manage",
+    content: (
+      <ul>
+        <li> • Performance Media</li>
+        <li> • Social Marketing</li>
+        <li> • Price & Promotions Management</li>
+        <li> • Inventory Management</li>
+      </ul>
+    ),
+  },
+  "how-to-execute": {
+    id: "how-to-execute",
+    title: "How to Execute",
+    content: (
+      <ul>
+        <li> • Retailer Activation</li>
+        <li> • Planning & Execution</li>
+        <li> • Social and Influencer</li>
+        <li> • Measurement & Feedback</li>
+      </ul>
+    ),
+  },
+  "how-to-win": {
+    id: "how-to-win",
+    title: "How to Win",
+    content: (
+      <ul>
+        <li> • Customer/Channel Plans</li>
+        <li> • Revenue Growth Management</li>
+        <li> • Attributed Business Plans</li>
+      </ul>
+    ),
+  },
+  "brain-center": {
+    id: "brain-center",
+    title: "AI Brain Center",
+    content: (
+      <>
+        The central intelligence: continuously learns + optimizes across
+        strategy and execution loops—where to play, how to win, manage, and
+        execute.
+      </>
+    ),
+  },
+  "komerz-agents": {
+    id: "komerz-agents",
+    title: "Komerz Agents",
+    content: (
+      <div className="flex flex-col justify-center gap-2">
+        <p>
+          Specialized agents that propose, simulate, and validate actions before
+          execution.
+        </p>
+
+        <div className="grid grid-cols-3 justify-center gap-2">
+          <div className="border rounded-lg p-3 flex flex-col items-center ">
+            <div className="rounded-full border p-1.5 bg-blue-500">
+              <TextSearch className="size-5 text-white" />
+            </div>
+            <h2 className="text-sm text-black font-semibold">DataScout</h2>
+            <p className="text-xs">Information Collection Agent</p>
+          </div>
+          <div className="border rounded-lg p-3 flex flex-col items-center ">
+            <div className="rounded-full border p-1.5 bg-red-500">
+              <SearchCheck className="size-5 text-white" />
+            </div>
+            <h2 className="text-sm text-black font-semibold">Logic Guard</h2>
+            <p className="text-xs">Vaidation & Critique Agent</p>
+          </div>
+          <div className="border rounded-lg p-3 flex flex-col items-center ">
+            <div className="rounded-full border p-1.5 bg-yellow-500">
+              <ChartArea className="size-5 text-white" />
+            </div>
+            <h2 className="text-sm text-black font-semibold">Insight Forge</h2>
+            <p className="text-xs">Report Generation Agent</p>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  "business-impact": {
+    id: "business-impact",
+    title: "Business Application and Impact",
+    content: (
+      <>
+        Outcomes you can see: growth, profitability, conversion, retention,
+        faster cycles, fewer mistakes—backed by explainable decisions.
+      </>
+    ),
+  },
+  "erp-integrations": {
+    id: "erp-integrations",
+    title: "ERP and Integrations",
+    content: (
+      <div>
+        Syncs decisions into real systems: ERP, OMS, WMS, marketplaces, ad
+        platforms, CRM—so execution happens where operations live.
+        <div>
+          <img src="/demo/erp.png" alt="ERP & Integrations" />
+        </div>
+      </div>
+    ),
+  },
+};
+
 export default function PipelinePage() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
+
+  const handleSectionClick = (sectionId: string) => {
+    setSelectedSection(sectionId);
+    setDrawerOpen(true);
+  };
+
+  const currentContent = selectedSection
+    ? SECTION_CONTENT[selectedSection as keyof typeof SECTION_CONTENT]
+    : null;
+
   return (
     <div className="bg-white h-screen min-h-screen max-h-screen relative flex flex-col">
       <Header />
@@ -42,18 +249,26 @@ export default function PipelinePage() {
         <div className="max-w-7xl mx-auto  flex items-center justify-center h-150 w-full p-2">
           <div className="flex flex-row items-center gap-12 h-full">
             {/* Column 1: Sources */}
-            <div className="flex flex-col gap-12 relative">
+            <div className="flex flex-col gap-10 relative">
               <div className="relative">
-                <div className="p-2 border rounded-lg font-semibold text-sm w-44 text-center bg-[#EBE7DD] z-10 relative transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-105 cursor-pointer">
-                  Internal Data Sources
+                <div
+                  onClick={() => handleSectionClick("internal-data-sources")}
+                  className="p-2 flex flex-col gap-1 items-center justify-center  border rounded-lg font-semibold text-sm w-44 text-center bg-[#EBE7DD] z-10 relative transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-105 cursor-pointer"
+                >
+                  <IconDatabaseSearch />
+                  <p className="text-xs "> Internal Data Sources</p>
                 </div>
                 {/* Arrow to Processing */}
                 <DashedArrow className="w-12 -right-12 top-1/2 -translate-y-1/2" />
               </div>
 
               <div className="relative">
-                <div className="p-2 border rounded-lg font-semibold text-sm w-44 text-center bg-[#EBE7DD] z-10 relative transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-105 cursor-pointer">
-                  External Data Sources
+                <div
+                  onClick={() => handleSectionClick("external-data-sources")}
+                  className="p-2 flex flex-col gap-1 items-center justify-center border rounded-lg font-semibold text-sm w-44 text-center bg-[#EBE7DD] z-10 relative transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-105 cursor-pointer"
+                >
+                  <IconWorldSearch />
+                  <p className="text-xs ">External Data Sources</p>
                 </div>
                 {/* Arrow to Processing */}
                 <DashedArrow className="w-12 -right-12 top-1/2 -translate-y-1/2" />
@@ -62,7 +277,10 @@ export default function PipelinePage() {
 
             {/* Column 2: Processing */}
             <div className="flex flex-col gap-8 relative">
-              <div className="p-2 h-36 w-36 border flex items-center justify-center flex-col rounded-lg bg-white z-10 relative transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3] hover:scale-105 cursor-pointer">
+              <div
+                onClick={() => handleSectionClick("intelligent-processing")}
+                className="p-2 h-36 w-36 border flex items-center justify-center flex-col rounded-lg bg-white z-10 relative transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3] hover:scale-105 cursor-pointer"
+              >
                 <img
                   src="/data-processing.png"
                   className="size-16"
@@ -78,10 +296,13 @@ export default function PipelinePage() {
 
             {/* Column 3: Proprietary Data */}
             <div className="flex items-center justify-center relative">
-              <div className="relative scale-75 w-48 h-64 flex flex-col items-center z-10 bg-white transition-all duration-300 hover:scale-[0.78] cursor-pointer group">
+              <div
+                onClick={() => handleSectionClick("proprietary-data")}
+                className="relative scale-75 w-48 h-64 flex flex-col items-center z-10 bg-white transition-all duration-300 hover:scale-[0.78] cursor-pointer group"
+              >
                 <div className="absolute top-0 w-full h-16 bg-white border-2  border-[#E4DECD] rounded-[50%] z-20 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#D4CAB3]"></div>
                 <div
-                  className="absolute top-8 w-full h-56 bg-[#1C2D48] border-x-2 border-b-2  border-[#E4DECD] flex items-center justify-center z-10 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-[#D4CAB3]/50"
+                  className="absolute top-8 w-full h-56 bg-[#1C2D48] border-x-2 border-b-2  border-[#E4DECD] flex items-center justify-center z-10 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-[#1C2D48]/50"
                   style={{ borderRadius: "0 0 50% 50% / 0 0 25% 25%" }}
                 >
                   <p className="text-white text-center font-bold text-lg mt-4 tracking-tight">
@@ -97,36 +318,51 @@ export default function PipelinePage() {
             <div className="flex items-center justify-center relative">
               <div className="relative w-80 h-80 z-10">
                 <div className="absolute top-0 left-0 w-1/2 h-1/2 p-0.5 group/segment">
-                  <div className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tl-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:-translate-x-2 hover:-translate-y-2 cursor-pointer origin-bottom-right">
+                  <div
+                    onClick={() => handleSectionClick("where-to-play")}
+                    className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tl-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:-translate-x-2 hover:-translate-y-2 cursor-pointer origin-bottom-right"
+                  >
                     <p className="text-xs text-center pt-6 pl-2 text-[#1C2D48]">
                       Where to Play
                     </p>
                   </div>
                 </div>
                 <div className="absolute top-0 right-0 w-1/2 h-1/2 p-0.5 group/segment">
-                  <div className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tr-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:translate-x-2 hover:-translate-y-2 cursor-pointer origin-bottom-left">
+                  <div
+                    onClick={() => handleSectionClick("how-to-manage")}
+                    className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tr-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:translate-x-2 hover:-translate-y-2 cursor-pointer origin-bottom-left"
+                  >
                     <p className="text-xs text-center pt-6 pr-2 text-[#1C2D48]">
                       How to Manage
                     </p>
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 w-1/2 h-1/2 p-0.5 group/segment">
-                  <div className="w-full h-full   bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-bl-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:-translate-x-2 hover:translate-y-2 cursor-pointer origin-top-right">
+                  <div
+                    onClick={() => handleSectionClick("how-to-execute")}
+                    className="w-full h-full   bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-bl-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:-translate-x-2 hover:translate-y-2 cursor-pointer origin-top-right"
+                  >
                     <p className="text-xs text-center pb-6 pl-2 text-[#1C2D48]">
                       How to Execute
                     </p>
                   </div>
                 </div>
                 <div className="absolute bottom-0 right-0 w-1/2 h-1/2 p-0.5 group/segment">
-                  <div className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD]  rounded-br-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:translate-x-2 hover:translate-y-2 cursor-pointer origin-top-left">
+                  <div
+                    onClick={() => handleSectionClick("how-to-win")}
+                    className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD]  rounded-br-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:translate-x-2 hover:translate-y-2 cursor-pointer origin-top-left"
+                  >
                     <p className="text-xs text-center pb-6 pr-2 text-[#1C2D48]">
                       How to Win
                     </p>
                   </div>
                 </div>
-                <div className="absolute bg-[#1C2D48] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20  rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:shadow-2xl hover:shadow-[#1C2D48]/70 hover:scale-110 cursor-pointer z-50">
+                <div
+                  onClick={() => handleSectionClick("brain-center")}
+                  className="absolute bg-[#1C2D48] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20  rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:shadow-2xl hover:shadow-[#1C2D48]/70 hover:scale-110 cursor-pointer z-50"
+                >
                   <div className="text-white  font-bold text-sm text-center border border-[#1C2D48]">
-                    <Brain />
+                    <BrainCircuit className="size-8" />
                   </div>
                 </div>
               </div>
@@ -139,18 +375,36 @@ export default function PipelinePage() {
 
             {/* Column 5: End Points */}
             <div className="flex flex-col items-center gap-8 justify-center relative">
-              <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white  z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3]/30 hover:scale-105 cursor-pointer">
-                <IconCpu2 className="size-6 text-[#1C2D48]" />
+              <div
+                onClick={() => handleSectionClick("komerz-agents")}
+                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white  z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C2D48]/30 hover:scale-105 cursor-pointer"
+              >
+                <img
+                  src="/demo/brain.svg"
+                  className="size-8 text-[#1C2D48] object-contain"
+                />
                 <p className="text-sm font-medium ">Komerz Agents</p>
               </div>
-              <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3]/30 hover:scale-105 cursor-pointer">
-                <IconChartAreaLine className="size-6 text-[#1C2D48]" />
+              <div
+                onClick={() => handleSectionClick("business-impact")}
+                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C2D48]/30 hover:scale-105 cursor-pointer"
+              >
+                <img
+                  src="/demo/chart.png"
+                  className="size-8 text-[#1C2D48] object-contain"
+                />
                 <p className="text-sm font-medium">
                   Business application and Impact
                 </p>
               </div>
-              <div className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3]/30 hover:scale-105 cursor-pointer">
-                <IconBolt className="size-6 text-[#1C2D48]" />
+              <div
+                onClick={() => handleSectionClick("erp-integrations")}
+                className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C2D48]/30 hover:scale-105 cursor-pointer"
+              >
+                <img
+                  src="/demo/integration.png"
+                  className="size-10 text-[#1C2D48] object-contain"
+                />
                 <p className="text-sm font-medium">ERP and Integrations</p>
               </div>
             </div>
@@ -159,6 +413,27 @@ export default function PipelinePage() {
       </div>
 
       <InfraBedrock />
+
+      {/* Drawer */}
+      <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+        <DrawerContent className="max-w-2xl mx-auto">
+          <div className="mx-auto w-full max-w-4xl  px-4 pb-16 lg:pb-32">
+            <DrawerHeader>
+              <DrawerTitle className="text-2xl font-bold text-[#1C2D48]">
+                {currentContent?.title}
+              </DrawerTitle>
+              <DrawerDescription>
+                Learn more about this component of the Komerz architecture
+              </DrawerDescription>
+            </DrawerHeader>
+            <div className="p-4 pb-0">
+              <div className="mt-3 h-[300px] overflow-y-auto">
+                {currentContent?.content}
+              </div>
+            </div>
+          </div>
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 }
