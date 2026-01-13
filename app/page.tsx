@@ -16,13 +16,13 @@ const DashedArrow = ({ className = "" }: { className?: string }) => (
       className="grow h-px"
       style={{
         backgroundImage:
-          "linear-gradient(to right, #9ca3af 50%, transparent 50%)",
+          "linear-gradient(to right, #1D2D48 50%, transparent 50%)",
         backgroundSize: "10px 1px",
         backgroundRepeat: "repeat-x",
         animation: "movingDash 0.6s linear infinite",
       }}
     />
-    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-gray-400" />
+    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-[#1D2D48]" />
     <style jsx>{`
       @keyframes movingDash {
         to {
