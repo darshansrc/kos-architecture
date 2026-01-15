@@ -1,5 +1,7 @@
 "use client";
 
+import Lottie from "lottie-react";
+import loopAnimation from "@/public/images/loop.json";
 import {
   BotMessageSquare,
   Brain,
@@ -323,7 +325,7 @@ export default function PipelinePage() {
                     className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tl-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:-translate-x-2 hover:-translate-y-2 cursor-pointer origin-bottom-right"
                   >
                     <p className="text-xs text-center pt-6 pl-2 text-[#1C2D48]">
-                      Where to Play
+                      1. Where to Play
                     </p>
                   </div>
                 </div>
@@ -333,7 +335,7 @@ export default function PipelinePage() {
                     className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tr-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:translate-x-2 hover:-translate-y-2 cursor-pointer origin-bottom-left"
                   >
                     <p className="text-xs text-center pt-6 pr-2 text-[#1C2D48]">
-                      How to Manage
+                      3. How to Manage
                     </p>
                   </div>
                 </div>
@@ -343,7 +345,7 @@ export default function PipelinePage() {
                     className="w-full h-full   bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-bl-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:-translate-x-2 hover:translate-y-2 cursor-pointer origin-top-right"
                   >
                     <p className="text-xs text-center pb-6 pl-2 text-[#1C2D48]">
-                      How to Execute
+                      4. How to Execute
                     </p>
                   </div>
                 </div>
@@ -353,18 +355,85 @@ export default function PipelinePage() {
                     className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD]  rounded-br-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:translate-x-2 hover:translate-y-2 cursor-pointer origin-top-left"
                   >
                     <p className="text-xs text-center pb-6 pr-2 text-[#1C2D48]">
-                      How to Win
+                      2. How to Win
                     </p>
                   </div>
                 </div>
-                <div
+                <svg
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 z-50 scale-50 hover:scale-60 transition-all"
+                  viewBox="640 175 160 160"
                   onClick={() => handleSectionClick("brain-center")}
-                  className="absolute bg-[#1C2D48] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20  rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:shadow-2xl hover:shadow-[#1C2D48]/70 hover:scale-110 cursor-pointer z-50"
+                  style={{ cursor: "pointer" }}
                 >
-                  <div className="text-white  font-bold text-sm text-center border border-[#1C2D48]">
-                    <BrainCircuit className="size-8" />
-                  </div>
-                </div>
+                  <defs>
+                    <filter
+                      id="shadow"
+                      x="-50%"
+                      y="-50%"
+                      width="200%"
+                      height="200%"
+                    >
+                      <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                      <feOffset dx="0" dy="2" result="offsetblur" />
+                      <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.3" />
+                      </feComponentTransfer>
+                      <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  <g className="node center-core ">
+                    <circle
+                      className="core-circle"
+                      cx="720"
+                      cy="255"
+                      r="72"
+                      fill="rgba(255,255,255,0.98)"
+                      stroke="rgba(29,45,72,0.25)"
+                      strokeWidth="2"
+                      filter="url(#shadow)"
+                    />
+                    <circle
+                      cx="720"
+                      cy="255"
+                      r="63"
+                      fill="none"
+                      stroke="rgba(29,45,72,0.08)"
+                      strokeWidth="1"
+                    />
+
+                    {/* Lottie Animation - embedded in foreignObject */}
+                    <foreignObject
+                      x="650"
+                      y="185"
+                      width="140"
+                      height="140"
+                      className="infinity-loop-container"
+                    >
+                      <div
+                        className="lottie-wrapper"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          pointerEvents: "auto",
+                        }}
+                      >
+                        <Lottie
+                          animationData={loopAnimation}
+                          loop={true}
+                          autoplay={true}
+                          style={{ width: "100%", height: "100%" }}
+                          className="infinity-lottie"
+                        />
+                      </div>
+                    </foreignObject>
+                  </g>
+                </svg>
               </div>
 
               {/* Diverging Arrows to the 3 end-blocks */}

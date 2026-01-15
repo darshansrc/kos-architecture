@@ -20,8 +20,8 @@ export default function Header() {
           <Image
             src="/logos/logo-big.svg"
             alt="Komerz OS Logo"
-            width={48}
-            height={48}
+            width={64}
+            height={64}
           />
         </div>
       </div>
