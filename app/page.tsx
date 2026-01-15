@@ -32,7 +32,13 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 
-const DashedArrow = ({ className = "" }: { className?: string }) => (
+const DashedArrow = ({
+  className = "",
+  isDouble,
+}: {
+  className?: string;
+  isDouble?: boolean;
+}) => (
   <div className={`flex items-center absolute z-0 ${className}`}>
     <div
       className="grow h-px"
@@ -45,6 +51,9 @@ const DashedArrow = ({ className = "" }: { className?: string }) => (
       }}
     />
     <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-[#1D2D48]" />
+    {isDouble && (
+      <div className="w-0 h-0 border-b-[6px] border-b-transparent border-t-[6px] border-t-transparent border-r-[8px] border-r-[#1D2D48]" />
+    )}
     <style jsx>{`
       @keyframes movingDash {
         to {
@@ -437,13 +446,13 @@ export default function PipelinePage() {
               </div>
 
               {/* Diverging Arrows to the 3 end-blocks */}
-              <DashedArrow className="w-28 -right-12 top-[10%] -translate-y-1/2" />
+              <DashedArrow className="w-28 -right-14 top-[5%] -rotate-35 -translate-y-1/2" />
               <DashedArrow className="w-12 -right-12 top-1/2 -translate-y-1/2" />
-              <DashedArrow className="w-28 -right-12 top-[90%] -translate-y-1/2" />
+              <DashedArrow className="w-28 -right-14 top-[95%] rotate-35 -translate-y-1/2" />
             </div>
 
             {/* Column 5: End Points */}
-            <div className="flex flex-col items-center gap-8 justify-center relative">
+            <div className="flex flex-col items-center gap-20 justify-center relative">
               <div
                 onClick={() => handleSectionClick("komerz-agents")}
                 className="h-24 w-64 border rounded-lg flex flex-col  items-center justify-center bg-white  z-10 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4CAB3]/30 hover:scale-105 cursor-pointer"
