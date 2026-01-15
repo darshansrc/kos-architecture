@@ -340,11 +340,11 @@ export default function PipelinePage() {
                 </div>
                 <div className="absolute top-0 right-0 w-1/2 h-1/2 p-0.5 group/segment">
                   <div
-                    onClick={() => handleSectionClick("how-to-manage")}
+                    onClick={() => handleSectionClick("how-to-win")}
                     className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD] rounded-tr-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:translate-x-2 hover:-translate-y-2 cursor-pointer origin-bottom-left"
                   >
                     <p className="text-xs text-center pt-6 pr-2 text-[#1C2D48]">
-                      3. How to Manage
+                      2. How to Win
                     </p>
                   </div>
                 </div>
@@ -360,11 +360,11 @@ export default function PipelinePage() {
                 </div>
                 <div className="absolute bottom-0 right-0 w-1/2 h-1/2 p-0.5 group/segment">
                   <div
-                    onClick={() => handleSectionClick("how-to-win")}
+                    onClick={() => handleSectionClick("how-to-manage")}
                     className="w-full h-full  bg-[#EBE7DD] border-2 border-[#E4DECD]  rounded-br-full flex items-center justify-center text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#D4CAB3] hover:scale-110 hover:translate-x-2 hover:translate-y-2 cursor-pointer origin-top-left"
                   >
                     <p className="text-xs text-center pb-6 pr-2 text-[#1C2D48]">
-                      2. How to Win
+                      3. How to Manage
                     </p>
                   </div>
                 </div>
